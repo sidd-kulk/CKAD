@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-securitycontext-pod
+  namespace: ns-2
+  labels:
+    app: ckad-app
+spec:
+  securityContext:
+    runAsUser: 2000
+    fsGroup: 3000
+  containers:
+  - name: my-securitycontext-pod-container
+    image: busybox
+    command: ['sh', '-c', 'cat /message/message.txt && sleep 1200']
+    volumeMounts:
+    - name: message-volume
+      mountPath: /message
+  volumes:
+  - name: message-volume
+    hostPath:
+      path: /etc/message

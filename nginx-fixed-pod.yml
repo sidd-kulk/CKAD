@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"my-ckad-app"},"name":"nginx-broken-pod","namespace":"ns-3"},"spec":{"containers":[{"image":"nginx:5454545","livenessProbe":{"httpGet":{"path":"/","port":80}},"name":"nginx"}]}}
+  creationTimestamp: null
+  labels:
+    app: my-ckad-app
+  name: nginx-broken-pod
+  selfLink: /api/v1/namespaces/ns-3/pods/nginx-broken-pod
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: 80
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: nginx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-psnwt
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: siddhark3c.mylabserver.com
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-psnwt
+    secret:
+      defaultMode: 420
+      secretName: default-token-psnwt
+status:
+  phase: Pending
+  qosClass: BestEffort

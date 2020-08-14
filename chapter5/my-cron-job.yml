@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: my-cron-job
+  namespace: ns-3
+  labels:
+    app: my-ckad-app
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: my-cron-job-container
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hola
+          restartPolicy: OnFailure  

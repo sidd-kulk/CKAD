@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-multi-container-pod
+  namespace: ns-3
+  labels:
+    app: my-ckad-app
+spec:
+  containers:
+  - name: my-multi-container-pod-nginx
+    image: nginx
+  - name: my-multi-container-pod-busybox
+    image: ubuntu
+    command: ['sh', '-c', 'echo $(curl http://localhost: 80) && sleep 1000']
+    

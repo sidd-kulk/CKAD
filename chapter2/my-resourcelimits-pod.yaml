@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-resourcelimits-pod
+  namespace: ns-2
+  labels:
+    app: my-ckad-app
+spec:
+  containers:
+  - name: my-resourcelimits-pod-container-1
+    image: busybox
+    command: ['sh', '-c', 'echo $(pwd) && sleep 1800']
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "500m"
+      limits:
+        memory: "128Mi"
+        cpu: "750m"

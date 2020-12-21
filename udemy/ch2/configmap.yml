@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-config
+  labels:
+    app: my-ckad-app
+  namespace: udemy
+data:
+  database: postgres
+  host: pg.svc.local

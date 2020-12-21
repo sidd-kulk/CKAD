@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd-entrypoint
+  labels:
+    app: my-ckad
+spec:
+  containers:
+  - name: cmd-entrypoint-container
+    image: ubuntu
+    args: ["10"]
+    command: ["sleep"]

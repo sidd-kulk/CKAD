@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: confmap-pod
+  namespace: udemy
+  labels:
+    app: my-ckad-app
+spec:
+  containers:
+  - name: conf-map-container
+    image: busybox
+    command: ["env"]
+    envFrom:
+      - configMapRef:
+          name: dev-config
+          

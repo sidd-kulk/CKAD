@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-pod
+  labels:
+    app: my-ckad-app
+  namespace: udemy
+spec:
+  serviceAccount: metrics-sa
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 2000
+  containers:
+  - name: security-context-container
+    image: busybox
+    command: ["sh", "-c", "sleep 1000"]
+    securityContext:
+      capabilities:
+        add: ["KILL"]

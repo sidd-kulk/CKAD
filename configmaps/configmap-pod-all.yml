@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-all
+  labels:
+    app: my-ckad-app
+  namespace: default
+spec:
+  containers:
+  - name: configmap-all-container
+    image: busybox
+    command: ["env"]
+    envFrom:
+      - configMapRef:
+          name: app-config      

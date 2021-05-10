@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: job-pod
+spec:
+  containers:
+  - name: job-pod-container
+    image: ubuntu
+    command: ['expr', '2', '-', '3']
+  restartPolicy: Never  

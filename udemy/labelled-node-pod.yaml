@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: labelled-node-pod
+  labels: 
+    sizeRequired: Medium
+spec:
+  containers:
+  - name: labelled-node-pod
+    image: nginx:alpine
+  nodeSelector:
+    size: Medium        

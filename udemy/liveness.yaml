@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe
+spec:
+  containers:
+  - name: liveness-probe-container
+    image: nginx
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 8080       
+        
+      initialDelaySeconds: 20
+      periodSeconds: 100
+      failureThreshold: 5    

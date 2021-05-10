@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness-probe
+  labels:
+    app: my-ckad-app
+spec:
+  containers:
+  - name: readiness-probe-container
+    image: nginx
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      exec:
+        command:
+          - cat
+          - /var/www/html

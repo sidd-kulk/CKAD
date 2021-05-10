@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-ckad-app
+  template:
+    metadata:
+      labels:
+        app: my-ckad-app
+    spec:
+      containers:
+      - name: my-deployment-container
+        image: nginx:1.14-err
+        ports:
+        - containerPort: 80

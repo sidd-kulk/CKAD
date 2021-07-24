@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: liveness-pod
+spec: 
+  containers: 
+  - name: liveness-pod-busybox
+    image: busybox
+    command: ['sh', '-c', 'echo kubernetes >> test.log && sleep 3600']
+    livenessProbe: 
+      exec: 
+        command: 
+        - cat 
+        - test.log 
+      initialDelaySeconds: 5
+      periodSeconds: 5    

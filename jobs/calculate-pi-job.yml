@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: calculate-pi
+  labels: 
+    app: my-ckad-app
+spec:
+  template: 
+    spec: 
+      containers: 
+      - name: perl-container
+        image: perl
+        command: ['perl',  '-Mbignum=bpi', '-wle', 'print bpi(a)']
+      restartPolicy: Never
+  backoffLimit: 1

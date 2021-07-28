@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: label-annotation
+  labels: 
+    app: my-ckad-app
+    from: linux-academy
+  annotations: 
+    when: 28-Jul
+spec: 
+  containers: 
+  - name: label-annotation-pod-container
+    image: busybox
+    command: ['sh', '-c', 'sleep 1200']
+

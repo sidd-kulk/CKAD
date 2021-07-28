@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: rolling-update
+  labels: 
+    app: my-ckad-app
+    tier: web-nginx
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels: 
+      tier: web-nginx
+  template: 
+    metadata: 
+      name: rolling-update-pod
+      labels: 
+        tier: web-nginx
+    spec: 
+      containers: 
+      - name: rolling-update-container
+        image: nginx:1.8
+        ports: 
+        - containerPort: 80
+        livenessProbe: 
+          httpGet: 
+            path: /
+            port: 80  

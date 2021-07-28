@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: apache-deployment
+  labels: 
+    app: my-ckad-app
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels: 
+      tier: web
+  template: 
+    metadata: 
+      name: apache-pod
+      labels: 
+        tier: web
+    spec: 
+      containers: 
+      - name: apache-pod-container
+        image: httpd    
